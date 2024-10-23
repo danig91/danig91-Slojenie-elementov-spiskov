@@ -6,27 +6,26 @@
 import itertools
 
 
-def fills_in_the_list(list_0):
-    print("Для завершения заполнения списка введите \"stop\"")
+def fills_in_the_list(list_name):
+    list_with_numbers = []
+    print(f"Заполните {list_name} список числами.\n"
+          f"Для завершения заполнения списка введите \"stop\"")
     while True:
+        input_number = input("Введите число: ")
+        if input_number == "stop":
+            break
         try:
-            input_number = input("Введите число: ")
-            if input_number == "stop":
-                break
-            else:
-                list_0.append(float(input_number))
+            list_with_numbers.append(float(input_number))
         except ValueError:
             print("Ввод нечислового значения!")
-    return list_0
+    return list_with_numbers
 
 
-list_1 = []
-list_2 = []
-print("Заполните первый список числами.")
-fills_in_the_list(list_1)
-print("\nЗаполните второй список числами.")
-fills_in_the_list(list_2)
-print(f"\nПервый список чисел:\n{list_1}\nВторой список чисел:\n{list_2}")
+list_with_numbers_1 = fills_in_the_list("первый")
+list_with_numbers_2 = fills_in_the_list("второй")
+
+print(f"\nПервый список чисел:\n{list_with_numbers_1}\nВторой список чисел:\n{list_with_numbers_2}")
+
 new_list = [sum(i) for i in itertools.zip_longest(
-    list_1, list_2, fillvalue=0)]
+    list_with_numbers_1, list_with_numbers_2, fillvalue=0)]
 print(f"Новый список чисел:\n{new_list}")
